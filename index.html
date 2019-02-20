@@ -1,20 +1,383 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>前端开发</title>
-</head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
 
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Custom Theme files -->
+	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<!-- font-awesome icons -->
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+	<!-- //Custom Theme files -->
+	<!-- js -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- //js -->
+	<!-- web-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Playball" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<!-- //web-fonts -->
+</head>
 <body>
-	<img src = "images/logo.jpg" />
-	<h1>Web前端开发</h1>
-	<h2><a href =  "https://baike.baidu.com/item/HTML/97049?fr=aladdin" >HTML</a></h2>
-	<p>超文本标记语言，用于构建网页结构，定义网页包括的内容。</p>
-	<hr>
-	<h2><a href = "https://baike.baidu.com/item/CSS/5457" >CSS</a></h2>
-	<p>层叠样式表，用于构建网页布局、外观，美化页面。</p>
-	<hr>
-	<h2><a href = "https://baike.baidu.com/item/javascript" >JS</a></h2>
-	<p>JavaScript，脚本语言，用于构建网页行为，与用户进行交互，使用户获得更好的体验。</p>
+	<!-- banner -->
+	<div class="banner-w3layouts">
+		<div class="flexslider">
+			<ul class="slides">
+				<li>
+					<div class="banner-w3text banner-img1">
+						<h4>Photography-my Passion</h4>
+					</div>
+				</li>
+				<li>
+					<div class="banner-w3text banner-img2">
+						<h4>Iam inspired by little moments</h4>
+					</div>
+				</li>
+				<li>
+					<div class="banner-w3text banner-img3">
+						<h4>photography is my conversation</h4>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- FlexSlider -->
+		<script defer src="js/jquery.flexslider.js"></script>
+		<script type="text/javascript">
+			$(window).load(function () {
+				$('.flexslider').flexslider({
+					animation: "slide",
+					start: function (slider) {
+						$('body').removeClass('loading');
+					}
+				});
+			});
+		</script>
+		<!-- //FlexSlider -->
+		<!-- banner-info -->
+		<div class="banner-agileinfo">
+			<div class="container">
+				<div class="w3header">
+					<!--header-->
+					<nav class="navbar navbar-default">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<h1><a href="index.html">passion</a></h1>
+						</div>
+						<!-- navbar-header -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="index.html" class="active">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="icons.html">Web Icons</a></li>
+										<li><a href="codes.html">Typography</a></li>
+									</ul>
+								</li>
+								<li><a href="portfolio.html">Portfolio</a></li>
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+							<div class="clearfix"> </div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //banner -->
+	<!-- about -->
+	<div class="jarallax w3ls-section w3-about" id="about">
+		<div class="container">
+			<div class="about-main">
+				<div class="col-md-6 w3_agileits-ab-main">
+					<h3 class="agileits-title">about me</h3>
+					<h4>Iam Layne passionate about photography. </h4>
+					<h5>you dream about your photo,will become true with me.</h5>
+					<p class="about-text-w3l col-md-6">Pellentesque accumsan cursus dui, sodales blandit urna sodal vitaepel entesque accumsan cursus dui,sod les blandit urna
+						urna sodales vitae pellentesque accumsan cursus dui, sodales blan urna sodales vitae pellentesque accumsan cursus dui,
+						sodales blan sodales vitae. Maece placerat eget mi vitae euismod. Du aliquam efficitur mi, et eleifend ye</p>
+					<p class="about-text-w3l col-md-6">Pellentesque accumsan cursus dui, sodales blandit urna sodal vitaepel entesque accumsan cursus dui,sod les blandit urna
+						urna sodales vitae Pellentesque accumsan cursus dui, sodales blan urna sodales vitae pellentesque accumsan cursus dui,
+						sodales blan sodales vitae. Maece placerat eget mi vitae euismod. Du aliquam efficitur mi, et eleifend.</p>
+					<div class="clearfix"></div>
+				</div>
+				<div class="w3ls-about-right col-md-6">
+					<img class="img-responsive" src="images/2.jpg" alt="about-image" />
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="text-center agileinfo-about-grid">
+				<div class="col-md-4 col-xs-6 w3ls-about-grid">
+					<span class="fa fa-picture-o" aria-hidden="true"></span>
+					<h6>Portrait photoshoot</h6>
+					<p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias</p>
+				</div>
+				<div class="col-md-4 col-xs-6 w3ls-about-grid about-2">
+					<span class="fa fa-heart" aria-hidden="true"></span>
+					<h6>Wedding photography</h6>
+					<p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias</p>
+				</div>
+				<div class="col-md-4 col-xs-6 w3ls-about-grid">
+					<span class="fa fa-car" aria-hidden="true"></span>
+					<h6>Travel photography</h6>
+					<p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- //about -->
+	<!-- stats -->
+	<div class="stats">
+		<div class="container">
+			<div class="stats-info">
+				<div class="col-md-3 col-sm-3 stats-grid">
+					<i class="fa fa-shopping-bag" aria-hidden="true"></i>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='2000' data-delay='.5' data-increment="1">1200</div>
+					<h4 class="stats-info">finished projects</h4>
+				</div>
+				<div class="col-md-3 col-sm-3 stats-grid">
+					<i class="fa fa-smile-o" aria-hidden="true"></i>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='1900' data-delay='.5' data-increment="1">3000</div>
+					<h4 class="stats-info">happy clients</h4>
+				</div>
+				<div class="col-md-3 col-sm-3 stats-grid">
+					<i class="fa fa-building" aria-hidden="true"></i>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='113' data-delay='.5' data-increment="10">9000</div>
+					<h4 class="stats-info">branches</h4>
+				</div>
+				<div class="col-md-3 col-sm-3 stats-grid">
+					<i class="fa fa-book" aria-hidden="true"></i>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='169' data-delay='.5' data-increment="1">169</div>
+					<h4 class="stats-info">working hours</h4>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- //stats -->
+	<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >建站模板</a></div>
+	<!-- Popular -->
+	<!-- news -->
+	<div id="news" class="w3ls-section services news">
+		<div class="container">
+			<h3 class="agileits-title">what i capture</h3>
+			<div class="news-agileinfo">
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a9.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">Jan 12, 2017</h5>
+							<h4>Nature photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a10.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">March 4, 2017</h5>
+							<h4>Fashion photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a3.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">May 21, 2017</h5>
+							<h4>Wildlife photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a4.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">April 21, 2017</h5>
+							<h4>Wedding photography</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a2.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">March 21, 2017</h5>
+							<h4>Aerial photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a5.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">April 21, 2017</h5>
+							<h4>Underwater photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a7.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">April 21, 2017</h5>
+							<h4>New Born photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a11.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">April 21, 2017</h5>
+							<h4>Bird photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 news-w3lgrids">
+					<div class="news-gridtext">
+						<div class="news-w3img">
+							<img src="images/a8.jpg" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="news-w3imgtext">
+							<h5 class="w3-agilep">April 21, 2017</h5>
+							<h4>Food photography </h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida mauris non mi gravida, at sollicitudin. </p>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- //news -->
+	<!-- about-slid -->
+	<div class="about-w3slid">
+		<div class="container">
+			<h2>Capturing the best moments on film, while each time presenting a unique standpoint.</h2>
+			<a href="#" data-toggle="modal" data-target="#myModal" class="agile-more">Read More</a>
+		</div>
+	</div>
+	<!-- //about-slid -->
+
+	<!-- contact -->
+	<div class="w3ls-section contact">
+		<div class="container">
+			<div class="w3ls-title">
+				<h3 class="agileits-title">get in touch</h3>
+			</div>
+			<div class="w3ls_map">
+				<iframe src=""
+				    style="border:0"></iframe>
+			</div>
+
+			<div class="contact_wthreerow agileits-w3layouts">
+				<div class="col-md-5 agileits_w3layouts_contact_gridl">
+					<div class="agileits_mail_grid_right_grid">
+						<h4>About me</h4>
+						<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur.</p>
+					</div>
+					<div class="agileits_mail_grid_right_grid">
+						<h4>Contact Info</h4>
+						<ul class="contact_info">
+							<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block,3FB,New Jersey.</li>
+							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
+							<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-7 w3l_contact_form">
+					<h4>Contact Form</h4>
+					<form action="#" method="post">
+						<input type="text" name="Name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}"
+						    required="">
+						<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"
+						    required="">
+						<input type="text" name="Phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}"
+						    required="">
+						<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required>Message...</textarea>
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- //contact -->
+	<div class="w3_agile-copyright text-center">
+		<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+	</div>
+	<!-- Tooltip -->
+	<div class="tooltip-content">
+		<div class="modal fade features-modal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">passion</h4>
+					</div>
+					<div class="modal-body">
+						<img src="images/1.jpg" class="img-responsive" alt="image">
+						<p>Fusce et congue nibh, ut ullamcorper magna. Donec ac massa tincidunt, fringilla sapien vel, tempus massa. Vestibulum
+							felis leo, tincidunt sit amet tristique accumsan. In vitae dapibus metus. Donec nec massa non nulla mattis aliquam
+							egestas et mi.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Tooltip -->
+	<script src="js/SmoothScroll.min.js"></script>
+	<!-- Numscroller -->
+	<script type="text/javascript" src="js/numscroller-1.0.js"></script>
+	<!-- //Numscroller -->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/bootstrap.js"></script>
 </body>
 </html>
