@@ -1,90 +1,148 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>My High School</title>
-    <link type="text/css" rel="stylesheet" href="css/lay.css">
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
 </head>
-<script type="text/javascript" src="js/index.js"></script>
-<body onload="getNowDate()" style="background-image: url('css/background.jpg')">
-    <div id="pad">
-        <span id="info"></span>
-        <div id="intro">
-            <a href="test.html">test</a>
-            <img src="img/1.jpg" width="350" height="200" id="pic1" style="margin-left: 20px">
-            <h3>校园简介</h3>
-            <p>重庆市梁平中学，建校于1907年，是重庆市重点中学、重庆市文明礼仪示范学校、重庆市德育示范校、重庆市绿色学校、重庆市文明单位。学校以“团结、勤奋、严谨、求实”的校风、“励志、博习、求实、创新”的校训远近闻名，是一所鸟语花香的园林式学校。学校雕塑“鲲鹏展翅”、“奋起”是朝气蓬勃、发愤图强、前程远大的象征。学校现有80余个教学班，学生5800余人。</p>
-        </div>
-        <section>
-            <h5>学校排名</h5>
-            <center>
-                <h4 style="font-size: 30px;">重庆市中学排名（仅供参考）</h4>
-                <table border="2px">
-                    <tr>
-                        <th>中学名称</th>
-                        <th>全国排名</th>
-                        <th>城市排名</th>
-                        <th>状元人数</th>
-                    </tr>
-                    <tr>
-                        <th><a href="https://baike.baidu.com/item/%E9%87%8D%E5%BA%86%E5%8D%97%E5%BC%80%E4%B8%AD%E5%AD%A6/149163?fr=aladdin">重庆南开中学</a></th>
-                        <th>12</th>
-                        <th>1</th>
-                        <th>8</th>
-                    </tr>
-                    <tr>
-                        <th><a href="https://baike.baidu.com/item/%E9%87%8D%E5%BA%86%E5%B8%82%E5%B7%B4%E8%9C%80%E4%B8%AD%E5%AD%A6%E6%A0%A1/14764332?fromtitle=%E9%87%8D%E5%BA%86%E5%B7%B4%E8%9C%80%E4%B8%AD%E5%AD%A6&fromid=9279175&fr=aladdin">重庆巴蜀中学</a></th>
-                        <th>19</th>
-                        <th>2</th>
-                        <th>6</th>
-                    </tr>
-                    <tr>
-                        <th>...</th>
-                        <th>...</th>
-                        <th>...</th>
-                        <th>...</th>
-                    </tr>
-                    <tr>
-                        <th><a href="https://baike.baidu.com/item/%E9%87%8D%E5%BA%86%E5%B8%82%E6%A2%81%E5%B9%B3%E4%B8%AD%E5%AD%A6/493024?fromtitle=%E6%A2%81%E5%B9%B3%E4%B8%AD%E5%AD%A6&fromid=6616893&fr=aladdin">梁平中学</a></th>
-                        <th>152</th>
-                        <th>5</th>
-                        <th>1</th>
-                    </tr>
-                </table>
-            </center>
-        </section>
-        <section>
-            <h5>校史沿革</h5>
-            <article>
-                <figure>
-                    <img src="img/2.jpg" width="300" height="200">
-                    <figcaption>梁平中学正门</figcaption>
-                </figure>
-                <p>清朝末年，废科举，兴新学，1907年2月，梁平中学建校名为“梁山中学堂”，使用县城南门“桂香书院”的校舍，一年后迁往四牌楼，即今人民广场正对面，原中心花园处。后改名“梁山中学校”、“梁山县立初级中学”。1927年，中共地下党组织就在梁中开展活动，梁中的地下党员参加领导了1930年闻名下川东的“虎南起义”。抗战时期，日寇对梁平城狂轰烂炸，校舍被炸毁，梁中被迫迁往巨奎乡顺天寨下的李家大院。梁中师生中的地下党员，积极投身于抗日救亡运动，好几位梁中教师，先后担任过中共梁山特支、梁山县委、梁达中心县委书记或委员。解放战争时期，他们反对国民党的法西斯统治，为迎接解放作了不懈的斗争。在长期的民主革命斗争中，梁中人抛头颅，洒热血，十多位革命者为革命献出了宝贵的生命。抗战胜利后，梁平中学迁回土城门外西关庙空军营房，后又迁往城西乡赵家庵。解放后，迁回城内南门望平楼，直到1955年才“根植西郊，址落镇龙”。改名为“梁山县立中学校”、“川东区梁山中学校”、“四川省梁平中学”。 粉碎“四人帮”后的1978年，年仅14岁的初中学生何运刚为保护集体财产，与罪犯搏斗而英勇牺牲，四川省教育厅、省团委授予何运刚“少年英雄”称号，省革委批准何运刚为“革命烈士”，教育部和共青团中央联合发出通知，号召全国广大青少年学习何运刚。1980年，梁平中学被四川省确定为首批办好的重点中学，1992年梁中被载入《中国名校》（中学卷）1997年重庆直辖，更名为“重庆市梁平中学”。学校继1998、1999连续两年被评为县级“红旗文明单位”，2000年又被命名为“重庆市级文明单位”，至今连续十年保持重庆市级文明单位称号。在具体实践中，我们采取了以下做法，取得了较好成绩，推动了学校整体工作向前发展。</p>
-                <center><a href="page_h.html" style="margin: 10px;font-size: 20px;background: gold;">>>详细信息<<</a></center>
-            </article>
-        </section>
-        <section>
-            <h5>校园介绍</h5>
-            <article>
-                <figure>
-                    <img src="img/3.jpg" width="300" height="200">
-                    <figcaption>梁平中学操场</figcaption>
-                </figure>
-                <p>学校占地面积240余亩，建筑面积12万余平方米，教学楼、科教中心、综合办公楼、学生餐厅、学生公寓、教师宿舍楼与400米塑胶田径运动场、足球场、篮球场、排球场、羽毛球场、乒乓球场、游泳馆、启运体育馆建筑设计构思新颖，造型别致，气势雄伟。图书馆藏书、理化生实验设备、艺体器材配备达到全国一类学校标准。投入300余万元建成“班班通”校园网络系统、广播系统及网站。各种现代化教学设施为课堂教学提供了先进的现代教育技术手段。是北大附中远程教育示范校。</p>
-                <p>其中启运体育馆很受同学欢迎，很多校级大型活动也在这里举行。</p>
-                <center><a href="page_c.html" style="margin: 10px;font-size: 20px;background: gold;">>>详细信息<<</a></center>
-                </article>
-        </section>
-        <section>
-            <h5>办学理念</h5>
-            <article>
-                <figure>
-                    <img src="img/4.jpg" width="300" height="200">
-                    <figcaption>“陶铸群英”雕塑</figcaption>
-                </figure>
-                <p>梁平中学以“陶铸群英”为办学宗旨，以“一切为了学生更好的发展，将每一个学生都培养成才”为办学理念，学校以“团结、勤奋、严谨、求实”的校风，“励志、博习、求实、创新”为校训。全面实施素质教育，取得显著成效。学校承担的《普通高完中教育教学管理整体改革研究》、《中学科技教育与人文精神相结合的研究》等多项国家级、省（市）级科研课题均取得优秀成果。科研兴校、科学办学是我校的特色之一。全面扎实的科研工作，推动了学校教育教学改革，促进了教学质量的稳步提高。高考上线率在市内名列前茅，每年“北京大学”、“清华大学”榜上有名 。唐国桥，2010年重庆高考文科总分状元，毕业于重庆市梁平中学 [2]  ，为校增添了光辉的一笔。学校每年有7名以上优秀学生加入中国共产党。</p>
-                <p>进入21世纪，面对新的挑战，学校制定出创建重庆市示范高级中学——全国千所示范高级中学——中华名校发展规化。梁中人决心深化改革，加速发展，把学校办成一所更有影响力、开放性的改革实验学校和校风示范学校。</p>
-            </article>
-        </section>
-    </div>
+<body>
+    <div id="8b56219ac1ae49bc9349bb90a578580e" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_8b56219ac1ae49bc9349bb90a578580e = echarts.init(
+            document.getElementById('8b56219ac1ae49bc9349bb90a578580e'), 'light', {renderer: 'canvas'});
+        var option_8b56219ac1ae49bc9349bb90a578580e = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "series": [
+        {
+            "type": "bar",
+            "name": "\u5546\u5bb6A",
+            "data": [
+                5,
+                20,
+                36,
+                10,
+                75,
+                90
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            }
+        },
+        {
+            "type": "bar",
+            "name": "\u5546\u5bb6B",
+            "data": [
+                4,
+                25,
+                40,
+                12,
+                80,
+                100
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u5546\u5bb6A",
+                "\u5546\u5bb6B"
+            ],
+            "selected": {
+                "\u5546\u5bb6A": true,
+                "\u5546\u5bb6B": true
+            },
+            "show": true
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0
+    },
+    "xAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            },
+            "data": [
+                "\u886c\u886b",
+                "\u7f8a\u6bdb\u886b",
+                "\u96ea\u7eba\u886b",
+                "\u88e4\u5b50",
+                "\u9ad8\u8ddf\u978b",
+                "\u889c\u5b50"
+            ]
+        }
+    ],
+    "yAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            }
+        }
+    ],
+    "title": [
+        {
+            "text": "\u6807\u9898",
+            "subtext": "\u526f\u6807\u9898"
+        }
+    ]
+};
+        chart_8b56219ac1ae49bc9349bb90a578580e.setOption(option_8b56219ac1ae49bc9349bb90a578580e);
+    </script>
 </body>
+</html>
