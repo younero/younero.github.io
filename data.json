@@ -1,0 +1,77 @@
+{
+    "value": 500,
+    "name": "pyecharts目录",
+    "children":[
+        {
+            "value": 200,
+            "name": "基本图表",
+            "children": [
+                {"value": 30, "name": "日历图"},
+                {"value": 30, "name": "漏斗图"},
+                {"value": 30, "name": "仪表盘"},
+                {"value": 20, "name": "关系图"},
+                {"value": 30, "name": "水球图"},
+                {"value": 20, "name": "平行坐标系"},
+                {"value": 30, "name": "饼图"},
+                {"value": 20, "name": "极坐标系"},
+                {"value": 30, "name": "雷达图"},
+                {"value": 30, "name": "桑基图"},
+                {"value": 30, "name": "旭日图"},
+                {"value": 30, "name": "主题河流图"},
+                {"value": 60, "name": "词云图"}
+            ]
+        },
+        {
+            "value": 300,
+            "name": "直角坐标系图表",
+            "children": [
+                {"value": 10, "name": "柱状图/条形图"},
+                {"value": 10, "name": "箱形图"},
+                {"value": 10, "name": "涟漪特效散点图"},
+                {"value": 10, "name": "热力图"},
+                {"value": 10, "name": "K线图"},
+                {"value": 10, "name": "折线/面积图"},
+                {"value": 10, "name": "象形柱状图"},
+                {"value": 10, "name": "散点图"},
+                {"value": 10, "name": "层叠多图"}
+            ]
+        },
+        {
+            "value": 100,
+            "name": "树型图表",
+            "children": [
+                {"value": 30, "name": "树图"},
+                {"value": 70, "name": "矩形树图"}
+            ]
+        },
+        {
+            "value": 200,
+            "name": "地理图表",
+            "children":[
+                {"value": 50, "name": "地理坐标系"},
+                {"value": 70, "name": "地图"},
+                {"value": 80, "name": "百度地图"}
+            ]
+        },
+        {
+            "value": 250,
+            "name": "3D图标",
+            "children": [
+                {"value": 65, "name": "3D柱状图"},
+                {"value": 65, "name": "3D折线图"},
+                {"value": 60, "name": "3D散点图"},
+                {"value": 60, "name": "3D曲面图"}
+            ]
+        },
+        {
+            "value": 100,
+            "name": "组合图表",
+            "children": [
+                {"value": 25, "name": "并行多图"},
+                {"value": 25, "name": "顺序多图"},
+                {"value": 25, "name": "选项卡多图"},
+                {"value": 25, "name": "时间线轮播多图"}
+            ]
+        }
+    ]
+}
