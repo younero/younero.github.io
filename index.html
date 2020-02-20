@@ -1,363 +1,3014 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>pyecharts演示</title>
-        <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
-        <script type="text/javascript" src="https://assets.pyecharts.org/assets/themes/macarons.js"></script>
-    </head>
-    <body>
-        <center>
-            <div id="45be9cfff03e4df0bd9733e7ce85f473" class="chart-container" style="width:1500px; height:500px;"></div>
-            <script>
-                var chart_45be9cfff03e4df0bd9733e7ce85f473 = echarts.init(
-                    document.getElementById('45be9cfff03e4df0bd9733e7ce85f473'), 'white', {renderer: 'canvas'});
-                var option_45be9cfff03e4df0bd9733e7ce85f473 = {
-            "animation": true,
-            "animationThreshold": 2000,
-            "animationDuration": 1000,
-            "animationEasing": "cubicOut",
-            "animationDelay": 0,
-            "animationDurationUpdate": 300,
-            "animationEasingUpdate": "cubicOut",
-            "animationDelayUpdate": 0,
-            "color": [
-                "#c23531",
-                "#2f4554",
-                "#61a0a8",
-                "#d48265",
-                "#749f83",
-                "#ca8622",
-                "#bda29a",
-                "#6e7074",
-                "#546570",
-                "#c4ccd3",
-                "#f05b72",
-                "#ef5b9c",
-                "#f47920",
-                "#905a3d",
-                "#fab27b",
-                "#2a5caa",
-                "#444693",
-                "#726930",
-                "#b2d235",
-                "#6d8346",
-                "#ac6767",
-                "#1d953f",
-                "#6950a1",
-                "#918597"
-            ],
-            "series": [
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合科技服务流程要素组配示意</title>
+    <link rel="stylesheet" type="text/css" href="demo.css">
+    <link href="jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="jquery-ui.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        .clear-fix:after {content:'\200B';display:block;height:0;clear:both;}
+        .toolbar {font-size:18px;background-color:#F5F5F5;border:1px solid #CCC;}
+        .toolbar .item {float:left;margin:0.5em 0.25em;width:10em;height:1.5em;line-height:1.5em;text-align:center;border:1px solid #CCC;background-color:#FFF;box-sizing:border-box;}
+        .workspace {position:relative;height:500px;font-size:18px;border:1px solid #CCC;border-top:0 none transparent;background-color:#F5F5F5;
+        }
+        .workspace .item {position:absolute;width:10em;height:1.5em;line-height:1.5em;text-align:center;border:1px solid #CCC;background-color:#FFF;}
+        .workspace .item:after {content:attr(data-id);display:block;font-size:12px;height:1em;line-height:1.2em;}
+
+        .line {position:absolute;height:1px;
+            background-image: -moz-linear-gradient(0deg, #FFF 25%, #000 25%, #000 50%, #FFF 50%, #FFF 75%, #000 75%, #000);background-size:40px 40px;box-shadow:0 0 2px 0 #000;
+            -webkit-transform-origin:left center;
+            -moz-transform-origin:left center;
+            -ms-transform-origin:left center;
+            -o-transform-origin:left center;
+            transform-origin:left center;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-animation: flow 2s linear infinite;
+            -moz-animation: flow 2s linear infinite;
+            -o-animation: flow 2s linear infinite;
+            animation: flow 2s linear infinite;
+        }
+        /*.line:after {position:absolute;content:'\200B';width:0;height:0;top:50%;right:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid #000;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);;
+        }/**/
+        @keyframes flow {
+            0% {background-position-x:0;}
+            100% {background-position-x:39px;}
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function(){
+
+            var instanceId = 1;
+
+            var domWorkspace = document.querySelector('.workspace');
+
+            function line_by_id($itemId)
+            {
+                return {
+                    from : Array.prototype.slice.call(document.querySelectorAll('[data-id-from="'+$itemId+'"]'))
+                    ,to  : Array.prototype.slice.call(document.querySelectorAll('[data-id-to="'+$itemId+'"]'))
+                };
+            }
+            function line_get($fromId, $toId)
+            {
+                var selector = '[data-id-from="'+$fromId+'"][data-id-to="'+$toId+'"]';
+                var dom = document.querySelector(selector);
+                if(dom instanceof HTMLElement == false)
                 {
-                    "type": "treemap",
-                    "name": "pyecharts\u76ee\u5f55",
-                    "data": [
+                    dom = document.createElement('DIV');
+                    dom.className = 'line';
+                    dom.setAttribute('data-id-from', $fromId);
+                    dom.setAttribute('data-id-to', $toId);
+                    domWorkspace.appendChild(dom);
+                }
+
+                return dom;
+            }
+            function line_update($domLine, $domBase)
+            {
+                var fromId = $domLine.getAttribute('data-id-from');
+                var toId   = $domLine.getAttribute('data-id-to');
+
+                var domFrom = $domBase.querySelector('.item[data-id="'+fromId+'"]');
+                var domTo   = $domBase.querySelector('.item[data-id="'+toId+'"]');
+
+                var rectBase = domWorkspace.getBoundingClientRect();
+                var rectFrom = domFrom.getBoundingClientRect();
+                var rectTo   = domTo.getBoundingClientRect();
+
+                var sx, sy, ex, ey;
+                if(rectFrom.right < rectTo.left)
+                {
+                    sx = rectFrom.right - rectBase.left;
+                    sy = rectFrom.top + Math.floor(rectFrom.height/2) - rectBase.top;
+                    ex = rectTo.left - rectBase.left;
+                    ey = rectTo.top + Math.floor(rectTo.height/2) - rectBase.top;
+                }
+                else if(rectFrom.left > rectTo.right)
+                {
+                    sx = rectFrom.left - rectBase.left;
+                    sy = rectFrom.top + Math.floor(rectFrom.height/2) - rectBase.top;
+                    ex = rectTo.right - rectBase.left;
+                    ey = rectTo.top + Math.floor(rectTo.height/2) - rectBase.top;
+                }
+                else
+                {
+                    sx = rectFrom.right - rectBase.left;
+                    sy = rectFrom.top + Math.floor(rectFrom.height/2) - rectBase.top;
+                    ex = rectTo.left - rectBase.left;
+                    ey = rectTo.top + Math.floor(rectTo.height/2) - rectBase.top;
+                }
+
+                var deg = Math.atan2((ey-sy),(ex-sx))*180/Math.PI;
+
+                $domLine.style.top = sy + 'px';
+                $domLine.style.left = sx + 'px';
+                $domLine.style.width = Math.sqrt( Math.pow(ex-sx, 2) + Math.pow(ey-sy, 2) ) + 'px';
+                $domLine.style.transform = 'rotate('+deg+'deg)';
+            }
+            var doms = new Array(8);
+            for(var i = 0;i<8;i++) {
+                doms[i] = new Array(8);
+                for(var j = 0;j<8;j++){
+                    doms[i][j] = document.querySelector('.toolbar .item[data-type=\"' + i + j + '\"]');
+                }
+            }
+
+            doms[0][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '00');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+            doms[0][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '01');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[0][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '02');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[0][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '03');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[0][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '04');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[0][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '05');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[0][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '06');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[0][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '07');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '10');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '11');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '12');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '13');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '14');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '15');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '16');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[1][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '17');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '20');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '21');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '22');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '23');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '24');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '25');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '26');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[2][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '27');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '30');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '31');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '32');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '33');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '34');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '35');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '36');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[3][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '37');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '40');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '41');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '40');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '41');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '42');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '43');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '44');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '45');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '46');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[4][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '47');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '50');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '51');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '52');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '53');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '54');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '55');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '56');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[5][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '57');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '60');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '61');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '62');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '63');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '64');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '65');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '66');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[6][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '67');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][0].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '70');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][1].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '71');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][2].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '72');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][3].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '73');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][4].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '74');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][5].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '75');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][6].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '76');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            doms[7][7].addEventListener('dragstart', function($evt){
+                $evt.dataTransfer.effectAllowed = 'copy';
+                $evt.dataTransfer.setData('text/plain', '77');
+
+                var json = {mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+            }, false);
+
+            domWorkspace.addEventListener('dragenter', function($evt){
+            }, false);
+            domWorkspace.addEventListener('dragleave', function($evt){
+            }, false);
+            domWorkspace.addEventListener('dragover', function($evt){
+                $evt.preventDefault();
+            }, false);
+            domWorkspace.addEventListener('drop', function($evt){
+                $evt.preventDefault();
+
+                var rect = domWorkspace.getBoundingClientRect();
+                var type = $evt.dataTransfer.getData('text/plain');
+                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                var dom;
+                if($evt.dataTransfer.effectAllowed == 'copy')
+                {
+                    switch(type)
+                    {
+                        case '00':
+                            dom = doms[0][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '00');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+                        case '01':
+                            dom = doms[0][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '01');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '02':
+                            dom = doms[0][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '02');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '03':
+                            dom = doms[0][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '03');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '04':
+                            dom = doms[0][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '04');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '05':
+                            dom = doms[0][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '05');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '06':
+                            dom = doms[0][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '06');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '07':
+                            dom = doms[0][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '07');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '10':
+                            dom = doms[1][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '10');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '11':
+                            dom = doms[1][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '11');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '12':
+                            dom = doms[1][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '12');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '13':
+                            dom = doms[1][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '13');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '14':
+                            dom = doms[1][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '14');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '15':
+                            dom = doms[1][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '15');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '16':
+                            dom = doms[1][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '16');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '17':
+                            dom = doms[1][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '17');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '20':
+                            dom = doms[2][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '20');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '21':
+                            dom = doms[2][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '21');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '22':
+                            dom = doms[2][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '22');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '23':
+                            dom = doms[2][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '23');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '24':
+                            dom = doms[2][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '24');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '25':
+                            dom = doms[2][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '25');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+
+                        case '26':
+                            dom = doms[2][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '26');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '27':
+                            dom = doms[2][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '27');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '30':
+                            dom = doms[3][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '30');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '31':
+                            dom = doms[3][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '31');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '32':
+                            dom = doms[3][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '32');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '33':
+                            dom = doms[3][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '33');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '34':
+                            dom = doms[3][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '34');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '35':
+                            dom = doms[3][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '35');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '36':
+                            dom = doms[3][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '36');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '37':
+                            dom = doms[3][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '37');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '40':
+                            dom = doms[4][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '40');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '41':
+                            dom = doms[4][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '41');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '42':
+                            dom = doms[4][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '42');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '43':
+                            dom = doms[4][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '43');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '44':
+                            dom = doms[4][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '44');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '45':
+                            dom = doms[4][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '45');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '46':
+                            dom = doms[4][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '46');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '47':
+                            dom = doms[4][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '47');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '50':
+                            dom = doms[5][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '50');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '51':
+                            dom = doms[5][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '51');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '52':
+                            dom = doms[5][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '52');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '53':
+                            dom = doms[5][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '53');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '54':
+                            dom = doms[5][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '54');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '55':
+                            dom = doms[5][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '55');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '56':
+                            dom = doms[5][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '56');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '57':
+                            dom = doms[5][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '57');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '60':
+                            dom = doms[6][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '60');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '61':
+                            dom = doms[6][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '61');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '62':
+                            dom = doms[6][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '62');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '63':
+                            dom = doms[6][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '63');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '64':
+                            dom = doms[6][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '64');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '65':
+                            dom = doms[6][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '65');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '66':
+                            dom = doms[6][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '66');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '67':
+                            dom = doms[6][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '67');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '70':
+                            dom = doms[7][0].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '70');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '71':
+                            dom = doms[7][1].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '71');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '72':
+                            dom = doms[7][2].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '72');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '73':
+                            dom = doms[7][3].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '73');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '74':
+                            dom = doms[7][4].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '74');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+
+                        case '75':
+                            dom = doms[7][5].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '75');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '76':
+                            dom = doms[7][6].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '76');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+
+                        case '77':
+                            dom = doms[7][7].cloneNode(true);
+                            dom.setAttribute('data-id', (instanceId++).toString());
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+                            domWorkspace.appendChild(dom);
+
+                            dom.addEventListener('dragstart', function($evt){
+                                $evt.dataTransfer.effectAllowed = 'move';
+                                $evt.dataTransfer.setData('text/plain', '77');
+
+                                var json = {id:this.getAttribute('data-id'),mx:$evt.offsetX||$evt.layerX,my:$evt.offsetY||$evt.layerY};
+                                $evt.dataTransfer.setData('text/json', JSON.stringify(json));
+                            });
+                            dom.addEventListener('drop', function($evt) {
+                                $evt.preventDefault();
+
+                                var json = JSON.parse($evt.dataTransfer.getData('text/json'));
+
+                                var fromId = json.id;
+                                var toId   = this.getAttribute('data-id');
+
+                                if(fromId == toId)
+                                    return;
+
+                                var domLine = line_get(fromId, toId);
+                                line_update(domLine, domWorkspace);
+                            });
+                            break;
+                    }
+                }
+                else if($evt.dataTransfer.effectAllowed == 'move')
+                {
+                    if($evt.target.classList.contains('workspace') == true)
+                    {
+                        var itemId = json.id;
+                        dom = domWorkspace.querySelector('.item[data-id="'+itemId+'"]');
+                        if(dom instanceof HTMLElement)
                         {
-                            "value": 87,
-                            "name": "pyecharts\u76ee\u5f55",
-                            "children": [
+                            dom.style.top  = ($evt.pageY - rect.top - json.my) + 'px';
+                            dom.style.left = ($evt.pageX - rect.left - json.mx) + 'px';
+
+                            var i;
+                            var map = line_by_id(itemId);
+                            if(Array.isArray(map.from) == true)
+                            {
+                                for(i=0; i<map.from.length; i++)
                                 {
-                                    "value": 50,
-                                    "name": "\u57fa\u672c\u56fe\u8868",
-                                    "children": [
-                                        {
-                                            "value": 30,
-                                            "name": "\u65e5\u5386\u56fe"
-                                        },
-                                        {
-                                            "value": 33,
-                                            "name": "\u6f0f\u6597\u56fe"
-                                        },
-                                        {
-                                            "value": 31,
-                                            "name": "\u4eea\u8868\u76d8"
-                                        },
-                                        {
-                                            "value": 25,
-                                            "name": "\u5173\u7cfb\u56fe"
-                                        },
-                                        {
-                                            "value": 27,
-                                            "name": "\u6c34\u7403\u56fe"
-                                        },
-                                        {
-                                            "value": 21,
-                                            "name": "\u5e73\u884c\u5750\u6807\u7cfb"
-                                        },
-                                        {
-                                            "value": 36,
-                                            "name": "\u997c\u56fe"
-                                        },
-                                        {
-                                            "value": 25,
-                                            "name": "\u6781\u5750\u6807\u7cfb"
-                                        },
-                                        {
-                                            "value": 24,
-                                            "name": "\u96f7\u8fbe\u56fe"
-                                        },
-                                        {
-                                            "value": 33,
-                                            "name": "\u6851\u57fa\u56fe"
-                                        },
-                                        {
-                                            "value": 34,
-                                            "name": "\u65ed\u65e5\u56fe"
-                                        },
-                                        {
-                                            "value": 30,
-                                            "name": "\u4e3b\u9898\u6cb3\u6d41\u56fe"
-                                        },
-                                        {
-                                            "value": 45,
-                                            "name": "\u8bcd\u4e91\u56fe"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "value": 60,
-                                    "name": "\u76f4\u89d2\u5750\u6807\u7cfb\u56fe\u8868",
-                                    "children": [
-                                        {
-                                            "value": 30,
-                                            "name": "\u67f1\u72b6\u56fe/\u6761\u5f62\u56fe"
-                                        },
-                                        {
-                                            "value": 10,
-                                            "name": "\u7bb1\u5f62\u56fe"
-                                        },
-                                        {
-                                            "value": 30,
-                                            "name": "\u6d9f\u6f2a\u7279\u6548\u6563\u70b9\u56fe"
-                                        },
-                                        {
-                                            "value": 25,
-                                            "name": "\u70ed\u529b\u56fe"
-                                        },
-                                        {
-                                            "value": 10,
-                                            "name": "K\u7ebf\u56fe"
-                                        },
-                                        {
-                                            "value": 25,
-                                            "name": "\u6298\u7ebf/\u9762\u79ef\u56fe"
-                                        },
-                                        {
-                                            "value": 20,
-                                            "name": "\u8c61\u5f62\u67f1\u72b6\u56fe"
-                                        },
-                                        {
-                                            "value": 10,
-                                            "name": "\u6563\u70b9\u56fe"
-                                        },
-                                        {
-                                            "value": 15,
-                                            "name": "\u5c42\u53e0\u591a\u56fe"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "value": 48,
-                                    "name": "\u6811\u578b\u56fe\u8868",
-                                    "children": [
-                                        {
-                                            "value": 30,
-                                            "name": "\u6811\u56fe"
-                                        },
-                                        {
-                                            "value": 70,
-                                            "name": "\u77e9\u5f62\u6811\u56fe"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "value": 50,
-                                    "name": "\u5730\u7406\u56fe\u8868",
-                                    "children": [
-                                        {
-                                            "value": 50,
-                                            "name": "\u5730\u7406\u5750\u6807\u7cfb"
-                                        },
-                                        {
-                                            "value": 70,
-                                            "name": "\u5730\u56fe"
-                                        },
-                                        {
-                                            "value": 80,
-                                            "name": "\u767e\u5ea6\u5730\u56fe"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "value": 60,
-                                    "name": "3D\u56fe\u6807",
-                                    "children": [
-                                        {
-                                            "value": 65,
-                                            "name": "3D\u67f1\u72b6\u56fe"
-                                        },
-                                        {
-                                            "value": 65,
-                                            "name": "3D\u6298\u7ebf\u56fe"
-                                        },
-                                        {
-                                            "value": 30,
-                                            "name": "3D\u6563\u70b9\u56fe"
-                                        },
-                                        {
-                                            "value": 40,
-                                            "name": "3D\u66f2\u9762\u56fe"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "value": 55,
-                                    "name": "\u7ec4\u5408\u56fe\u8868",
-                                    "children": [
-                                        {
-                                            "value": 20,
-                                            "name": "\u5e76\u884c\u591a\u56fe"
-                                        },
-                                        {
-                                            "value": 30,
-                                            "name": "\u987a\u5e8f\u591a\u56fe"
-                                        },
-                                        {
-                                            "value": 40,
-                                            "name": "\u9009\u9879\u5361\u591a\u56fe"
-                                        },
-                                        {
-                                            "value": 50,
-                                            "name": "\u65f6\u95f4\u7ebf\u8f6e\u64ad\u591a\u56fe"
-                                        }
-                                    ]
+                                    line_update(map.from[i], domWorkspace);
                                 }
-                            ]
+                            }
+                            if(Array.isArray(map.to) == true)
+                            {
+                                for(i=0; i<map.to.length; i++)
+                                {
+                                    line_update(map.to[i], domWorkspace);
+                                }
+                            }
                         }
-                    ],
-                    "label": {
-                        "show": true,
-                        "position": "inside",
-                        "margin": 8,
-                        "fontSize": 30
-                    },
-                    "leafDepth": 1,
-                    "drillDownIcon": "\u25b6"
+                    }
                 }
-            ],
-            "legend": [
-                {
-                    "data": [
-                        "pyecharts\u76ee\u5f55"
-                    ],
-                    "selected": {
-                        "pyecharts\u76ee\u5f55": true
-                    },
-                    "show": true
-                }
-            ],
-            "tooltip": {
-                "show": true,
-                "trigger": "item",
-                "triggerOn": "mousemove|click",
-                "axisPointer": {
-                    "type": "line"
-                },
-                "textStyle": {
-                    "fontSize": 14
-                },
-                "borderWidth": 0
-            },
-            "title": [
-                {
-                    "text": "pyecharts\u76ee\u5f55",
-                    "subtext": "\u5bf9pycharts\u7684\u7b80\u5355\u4ecb\u7ecd"
-                }
-            ],
-            "visualMap": {
-                "show": true,
-                "type": "continuous",
-                "min": 0,
-                "max": 100,
-                "inRange": {
-                    "color": [
-                        "rgb(157, 211, 250)",
-                        "rgb(31, 111, 181)"
-                    ]
-                },
-                "calculable": true,
-                "splitNumber": 5,
-                "orient": "vertical",
-                "showLabel": true
-            }
-        };
-                chart_45be9cfff03e4df0bd9733e7ce85f473.setOption(option_45be9cfff03e4df0bd9733e7ce85f473);
-            </script>    
-        <style type="text/css">
-            table.gridtable {
-                font-family: verdana,arial,sans-serif;
-                font-size:20px;
-                color:#333333;
-                border-width: 1px;
-                border-color: #666666;
-                border-collapse: collapse;
-            }
-            table.gridtable th {
-                border-width: 1px;
-                padding: 8px;
-                border-style: solid;
-                border-color: #666666;
-                background-color: #dedede;
-            }
-            table.gridtable td {
-                border-width: 1px;
-                padding: 8px;
-                border-style: solid;
-                border-color: #666666;
-                background-color: #ffffff;
-            }
-        </style>
-         
-        <embed src="MoonLight.mp3" hidden="true" autostart="true" loop="true">
-            
-        <script type='text/javascript' color='19,175,255' zIndex='-1' opacity='0.8' count='99' src='//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js'></script>
-        <center><h1 style="margin-top: 3%;font-size: 40px;color:white;background-color: rgb(157, 211, 250)">pyecharts项目演示</h1></center>
-        <center><h3 style="font-size: 23px">——附整理总结</h3></center>
-        <center>
-            <table border="2" class="gridtable" style="text-align: center;margin-bottom: 50px">
-                <tr>
-                    <td><b>基本图表</b></td>
-                    <td><b>平面直角系图表</b></td>
-                    <td><b>地理图表</b></td>
-                    <td><b>树型图表</b></td>
-                </tr>
-                <tr>
-                    <td><a href="calendar_heatmap.html" target="_blank">日历图</a></td>
-                    <td><a href="bar.html" target="_blank">柱状图</a> </td>
-                    <td><a href="map.html" target="_blank">基本地图</a></td>
-                    <td><a href="radial_tree.html" target="_blank">放射性树状图</a></td>
-                </tr>
-                <tr>
-                    <td><a href="gauge_change_color.html" target="_blank">仪表盘</a></td>
-                    <td><a href="line.html" target="_blank">线性图</a></td>
-                    <td><a href="china_gdp_from_1993_to_2018.html" target="_blank">各省GDP图表</a></td>
-                    <td><a href="echarts_option_query.html" target="_blank">矩形树图</a></td>
-                </tr>
-                <tr>
-                    <td><a href="two_value_axes_in_polar_2.html" target="_blank">极坐标图</a></td>
-                    <td><a href="mixed_bar_and_line.html" target="_blank">柱状-折线组合图</a></td>
-                    <td><a href="map3d.html" target="_blank">地球仪</a></td>
-                </tr>
-                <tr>
-                    <td><a href="npm_dependencies.html" target="_blank">关系图</a></td>
-                    <td><a href="bar3d_punch_card.html" target="_blank">3D柱状图</a></td>
-                </tr>
-                <tr>
-                    <td><a href="pie.html" target="_blank">饼图</a></td>
-                    <td><a href="line3d_rectangular_projection.html" target="_blank">3D折线图</a></td>
-                </tr>
-            </table>
-            <a href="https://github.com/pyecharts/pyecharts-gallery" target="_blank" style="margin-bottom: 20px">相关python代码</a>
-            <a href="pyecharts.pptx">ppt下载</a>
-        </center>
-    </body>
+            }, false);
+        });
+    </script>
+</head>
+<body style="background-color: #ededed">
+<div class="header" style="position: relative; z-index: 999">
+    <ul class="header_ul">
+        <li class="header_ul_s1">研究开发
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">研究开发-E1</li>
+                <li class="ui-widget-content">研究开发-E2</li>
+                <li class="ui-widget-content">研究开发-E3</li>
+                <li class="ui-widget-content">研究开发-E4</li>
+                <li class="ui-widget-content">研究开发-E5</li>
+                <li class="ui-widget-content">研究开发-E6</li>
+                <li class="ui-widget-content">研究开发-E7</li>
+                <li class="ui-widget-content">研究开发-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s2">技术转移
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">技术转移-E1</li>
+                <li class="ui-widget-content">技术转移-E2</li>
+                <li class="ui-widget-content">技术转移-E3</li>
+                <li class="ui-widget-content">技术转移-E4</li>
+                <li class="ui-widget-content">技术转移-E5</li>
+                <li class="ui-widget-content">技术转移-E6</li>
+                <li class="ui-widget-content">技术转移-E7</li>
+                <li class="ui-widget-content">技术转移-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s3">检验检测认证
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">检验检测认证-E1</li>
+                <li class="ui-widget-content">检验检测认证-E2</li>
+                <li class="ui-widget-content">检验检测认证-E3</li>
+                <li class="ui-widget-content">检验检测认证-E4</li>
+                <li class="ui-widget-content">检验检测认证-E5</li>
+                <li class="ui-widget-content">检验检测认证-E6</li>
+                <li class="ui-widget-content">检验检测认证-E7</li>
+                <li class="ui-widget-content">检验检测认证-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s4">创业孵化
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">创业孵化-E1</li>
+                <li class="ui-widget-content">创业孵化-E2</li>
+                <li class="ui-widget-content">创业孵化-E3</li>
+                <li class="ui-widget-content">创业孵化-E4</li>
+                <li class="ui-widget-content">创业孵化-E5</li>
+                <li class="ui-widget-content">创业孵化-E6</li>
+                <li class="ui-widget-content">创业孵化-E7</li>
+                <li class="ui-widget-content">创业孵化-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s5">知识产权
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">知识产权-E1</li>
+                <li class="ui-widget-content">知识产权-E2</li>
+                <li class="ui-widget-content">知识产权-E3</li>
+                <li class="ui-widget-content">知识产权-E4</li>
+                <li class="ui-widget-content">知识产权-E5</li>
+                <li class="ui-widget-content">知识产权-E6</li>
+                <li class="ui-widget-content">知识产权-E7</li>
+                <li class="ui-widget-content">知识产权-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s6">科技咨询
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">科技咨询-E1</li>
+                <li class="ui-widget-content">科技咨询-E2</li>
+                <li class="ui-widget-content">科技咨询-E3</li>
+                <li class="ui-widget-content">科技咨询-E4</li>
+                <li class="ui-widget-content">科技咨询-E5</li>
+                <li class="ui-widget-content">科技咨询-E6</li>
+                <li class="ui-widget-content">科技咨询-E7</li>
+                <li class="ui-widget-content">科技咨询-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s7">科技金融
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">科技金融-E1</li>
+                <li class="ui-widget-content">科技金融-E2</li>
+                <li class="ui-widget-content">科技金融-E3</li>
+                <li class="ui-widget-content">科技金融-E4</li>
+                <li class="ui-widget-content">科技金融-E5</li>
+                <li class="ui-widget-content">科技金融-E6</li>
+                <li class="ui-widget-content">科技金融-E7</li>
+                <li class="ui-widget-content">科技金融-E8</li>
+            </ul>
+        </li>
+        <li class="header_ul_s8">科学技术普及
+            <ul class="header_ul_ul">
+                <li class="ui-widget-content">科学技术普及-E1</li>
+                <li class="ui-widget-content">科学技术普及-E2</li>
+                <li class="ui-widget-content">科学技术普及-E3</li>
+                <li class="ui-widget-content">科学技术普及-E4</li>
+                <li class="ui-widget-content">科学技术普及-E5</li>
+                <li class="ui-widget-content">科学技术普及-E6</li>
+                <li class="ui-widget-content">科学技术普及-E7</li>
+                <li class="ui-widget-content">科学技术普及-E8</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="toolbar clear-fix">
+    <div id="研究开发-E1" class="item" data-type="00" draggable="true" style="display: none">研究开发-E1</div>
+    <div id="研究开发-E2" class="item" data-type="01" draggable="true" style="display: none">研究开发-E2</div>
+    <div id="研究开发-E3" class="item" data-type="02" draggable="true" style="display: none">研究开发-E3</div>
+    <div id="研究开发-E4" class="item" data-type="03" draggable="true" style="display: none">研究开发-E4</div>
+    <div id="研究开发-E5" class="item" data-type="04" draggable="true" style="display: none">研究开发-E5</div>
+    <div id="研究开发-E6" class="item" data-type="05" draggable="true" style="display: none">研究开发-E6</div>
+    <div id="研究开发-E7" class="item" data-type="06" draggable="true" style="display: none">研究开发-E7</div>
+    <div id="研究开发-E8" class="item" data-type="07" draggable="true" style="display: none">研究开发-E8</div>
+    <div id="技术转移-E1" class="item" data-type="10" draggable="true" style="display: none">技术转移-E1</div>
+    <div id="技术转移-E2" class="item" data-type="11" draggable="true" style="display: none">技术转移-E2</div>
+    <div id="技术转移-E3" class="item" data-type="12" draggable="true" style="display: none">技术转移-E3</div>
+    <div id="技术转移-E4" class="item" data-type="13" draggable="true" style="display: none">技术转移-E4</div>
+    <div id="技术转移-E5" class="item" data-type="14" draggable="true" style="display: none">技术转移-E5</div>
+    <div id="技术转移-E6" class="item" data-type="15" draggable="true" style="display: none">技术转移-E6</div>
+    <div id="技术转移-E7" class="item" data-type="16" draggable="true" style="display: none">技术转移-E7</div>
+    <div id="技术转移-E8" class="item" data-type="17" draggable="true" style="display: none">技术转移-E8</div>
+    <div id="检验检测认证-E1" class="item" data-type="20" draggable="true" style="display: none">技检验检测认证-E1</div>
+    <div id="检验检测认证-E2" class="item" data-type="21" draggable="true" style="display: none">技检验检测认证-E2</div>
+    <div id="检验检测认证-E3" class="item" data-type="22" draggable="true" style="display: none">技检验检测认证-E3</div>
+    <div id="检验检测认证-E4" class="item" data-type="23" draggable="true" style="display: none">技检验检测认证-E4</div>
+    <div id="检验检测认证-E5" class="item" data-type="24" draggable="true" style="display: none">技检验检测认证-E5</div>
+    <div id="检验检测认证-E6" class="item" data-type="25" draggable="true" style="display: none">技检验检测认证-E6</div>
+    <div id="检验检测认证-E7" class="item" data-type="26" draggable="true" style="display: none">技检验检测认证-E7</div>
+    <div id="检验检测认证-E8" class="item" data-type="27" draggable="true" style="display: none">技检验检测认证-E8</div>
+    <div id="创业孵化-E1" class="item" data-type="30" draggable="true" style="display: none">创业孵化-E1</div>
+    <div id="创业孵化-E2" class="item" data-type="31" draggable="true" style="display: none">创业孵化-E2</div>
+    <div id="创业孵化-E3" class="item" data-type="32" draggable="true" style="display: none">创业孵化-E3</div>
+    <div id="创业孵化-E4" class="item" data-type="33" draggable="true" style="display: none">创业孵化-E4</div>
+    <div id="创业孵化-E5" class="item" data-type="34" draggable="true" style="display: none">创业孵化-E5</div>
+    <div id="创业孵化-E6" class="item" data-type="35" draggable="true" style="display: none">创业孵化-E6</div>
+    <div id="创业孵化-E7" class="item" data-type="36" draggable="true" style="display: none">创业孵化-E7</div>
+    <div id="创业孵化-E8" class="item" data-type="37" draggable="true" style="display: none">创业孵化-E8</div>
+    <div id="知识产权-E1" class="item" data-type="40" draggable="true" style="display: none">知识产权-E1</div>
+    <div id="知识产权-E2" class="item" data-type="41" draggable="true" style="display: none">知识产权-E2</div>
+    <div id="知识产权-E3" class="item" data-type="42" draggable="true" style="display: none">知识产权-E3</div>
+    <div id="知识产权-E4" class="item" data-type="43" draggable="true" style="display: none">知识产权-E4</div>
+    <div id="知识产权-E5" class="item" data-type="44" draggable="true" style="display: none">知识产权-E5</div>
+    <div id="知识产权-E6" class="item" data-type="45" draggable="true" style="display: none">知识产权-E6</div>
+    <div id="知识产权-E7" class="item" data-type="46" draggable="true" style="display: none">知识产权-E7</div>
+    <div id="知识产权-E8" class="item" data-type="47" draggable="true" style="display: none">知识产权-E8</div>
+    <div id="科技咨询-E1" class="item" data-type="50" draggable="true" style="display: none">科技咨询-E1</div>
+    <div id="科技咨询-E2" class="item" data-type="51" draggable="true" style="display: none">科技咨询-E2</div>
+    <div id="科技咨询-E3" class="item" data-type="52" draggable="true" style="display: none">科技咨询-E3</div>
+    <div id="科技咨询-E4" class="item" data-type="53" draggable="true" style="display: none">科技咨询-E4</div>
+    <div id="科技咨询-E5" class="item" data-type="54" draggable="true" style="display: none">科技咨询-E5</div>
+    <div id="科技咨询-E6" class="item" data-type="55" draggable="true" style="display: none">科技咨询-E6</div>
+    <div id="科技咨询-E7" class="item" data-type="56" draggable="true" style="display: none">科技咨询-E7</div>
+    <div id="科技咨询-E8" class="item" data-type="57" draggable="true" style="display: none">科技咨询-E8</div>
+    <div id="科技金融-E1" class="item" data-type="60" draggable="true" style="display: none">科技金融-E1</div>
+    <div id="科技金融-E2" class="item" data-type="61" draggable="true" style="display: none">科技金融-E2</div>
+    <div id="科技金融-E3" class="item" data-type="62" draggable="true" style="display: none">科技金融-E3</div>
+    <div id="科技金融-E4" class="item" data-type="63" draggable="true" style="display: none">科技金融-E4</div>
+    <div id="科技金融-E5" class="item" data-type="64" draggable="true" style="display: none">科技金融-E5</div>
+    <div id="科技金融-E6" class="item" data-type="65" draggable="true" style="display: none">科技金融-E6</div>
+    <div id="科技金融-E7" class="item" data-type="66" draggable="true" style="display: none">科技金融-E7</div>
+    <div id="科技金融-E8" class="item" data-type="67" draggable="true" style="display: none">科技金融-E8</div>
+    <div id="科学技术普及-E1" class="item" data-type="70" draggable="true" style="display: none">科学技术普及-E1</div>
+    <div id="科学技术普及-E2" class="item" data-type="71" draggable="true" style="display: none">科学技术普及-E2</div>
+    <div id="科学技术普及-E3" class="item" data-type="72" draggable="true" style="display: none">科学技术普及-E3</div>
+    <div id="科学技术普及-E4" class="item" data-type="73" draggable="true" style="display: none">科学技术普及-E4</div>
+    <div id="科学技术普及-E5" class="item" data-type="74" draggable="true" style="display: none">科学技术普及-E5</div>
+    <div id="科学技术普及-E6" class="item" data-type="75" draggable="true" style="display: none">科学技术普及-E6</div>
+    <div id="科学技术普及-E7" class="item" data-type="76" draggable="true" style="display: none">科学技术普及-E7</div>
+    <div id="科学技术普及-E8" class="item" data-type="77" draggable="true" style="display: none">科学技术普及-E8</div>
+</div>
+<div class="workspace" style="margin-left: 204px; height: 601px"></div>
+</body>
 </html>
+
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        $(".ui-widget-content").click(function () {-->
+<!--            var text = $(this).text()-->
+<!--            var div = document.createElement("div")-->
+<!--            $(".toolbar").append(div)-->
+<!--            div.setAttribute("data-type", "xxx")-->
+<!--            div.className = "item"-->
+<!--            div.textContent = text-->
+<!--            div.draggable = "true"-->
+<!--            div.style.borderStyle = "solid"-->
+<!--            div.style.borderWidth = "1px"-->
+<!--        })-->
+<!--    })-->
+<!--</script>-->
+<script type="text/javascript">
+    $(function () {
+        $(".ui-widget-content").click(function () {
+            switch ($(this).text()) {
+                case "研究开发-E1":
+                    document.getElementById("研究开发-E1").style.display = "block";
+                    break;
+                case "研究开发-E2":
+                    document.getElementById("研究开发-E2").style.display = "block";
+                    break;
+                case "研究开发-E3":
+                    document.getElementById("研究开发-E3").style.display = "block";
+                    break;
+                case "研究开发-E4":
+                    document.getElementById("研究开发-E4").style.display = "block";
+                    break;
+                case "研究开发-E5":
+                    document.getElementById("研究开发-E5").style.display = "block";
+                    break;
+                case "研究开发-E6":
+                    document.getElementById("研究开发-E6").style.display = "block";
+                    break;
+                case "研究开发-E7":
+                    document.getElementById("研究开发-E7").style.display = "block";
+                    break;
+                case "研究开发-E8":
+                    document.getElementById("研究开发-E8").style.display = "block";
+                    break;
+                case "技术转移-E1":
+                    document.getElementById("技术转移-E1").style.display = "block";
+                    break;
+                case "技术转移-E2":
+                    document.getElementById("技术转移-E2").style.display = "block";
+                    break;
+                case "技术转移-E3":
+                    document.getElementById("技术转移-E3").style.display = "block";
+                    break;
+                case "技术转移-E4":
+                    document.getElementById("技术转移-E4").style.display = "block";
+                    break;
+                case "技术转移-E5":
+                    document.getElementById("技术转移-E5").style.display = "block";
+                    break;
+                case "技术转移-E6":
+                    document.getElementById("技术转移-E6").style.display = "block";
+                    break;
+                case "技术转移-E7":
+                    document.getElementById("技术转移-E7").style.display = "block";
+                    break;
+                case "技术转移-E8":
+                    document.getElementById("技术转移-E8").style.display = "block";
+                    break;
+                case "检验检测认证-E1":
+                    document.getElementById("检验检测认证-E1").style.display = "block";
+                    break;
+                case "检验检测认证-E2":
+                    document.getElementById("检验检测认证-E2").style.display = "block";
+                    break;
+                case "检验检测认证-E3":
+                    document.getElementById("检验检测认证-E3").style.display = "block";
+                    break;
+                case "检验检测认证-E4":
+                    document.getElementById("检验检测认证-E4").style.display = "block";
+                    break;
+                case "检验检测认证-E5":
+                    document.getElementById("检验检测认证-E5").style.display = "block";
+                    break;
+                case "检验检测认证-E6":
+                    document.getElementById("检验检测认证-E6").style.display = "block";
+                    break;
+                case "检验检测认证-E7":
+                    document.getElementById("检验检测认证-E7").style.display = "block";
+                    break;
+                case "检验检测认证-E8":
+                    document.getElementById("检验检测认证-E8").style.display = "block";
+                    break;
+                case "创业孵化-E1":
+                    document.getElementById("创业孵化-E1").style.display = "block";
+                    break;
+                case "创业孵化-E2":
+                    document.getElementById("创业孵化-E2").style.display = "block";
+                    break;
+                case "创业孵化-E3":
+                    document.getElementById("创业孵化-E3").style.display = "block";
+                    break;
+                case "创业孵化-E4":
+                    document.getElementById("创业孵化-E4").style.display = "block";
+                    break;
+                case "创业孵化-E5":
+                    document.getElementById("创业孵化-E5").style.display = "block";
+                    break;
+                case "创业孵化-E6":
+                    document.getElementById("创业孵化-E6").style.display = "block";
+                    break;
+                case "创业孵化-E7":
+                    document.getElementById("创业孵化-E7").style.display = "block";
+                    break;
+                case "创业孵化-E8":
+                    document.getElementById("创业孵化-E8").style.display = "block";
+                    break;
+                case "知识产权-E1":
+                    document.getElementById("知识产权-E1").style.display = "block";
+                    break;
+                case "知识产权-E2":
+                    document.getElementById("知识产权-E2").style.display = "block";
+                    break;
+                case "知识产权-E3":
+                    document.getElementById("知识产权-E3").style.display = "block";
+                    break;
+                case "知识产权-E4":
+                    document.getElementById("知识产权-E4").style.display = "block";
+                    break;
+                case "知识产权-E5":
+                    document.getElementById("知识产权-E5").style.display = "block";
+                    break;
+                case "知识产权-E6":
+                    document.getElementById("知识产权-E6").style.display = "block";
+                    break;
+                case "知识产权-E7":
+                    document.getElementById("知识产权-E7").style.display = "block";
+                    break;
+                case "知识产权-E8":
+                    document.getElementById("知识产权-E8").style.display = "block";
+                    break;
+                case "科技咨询-E1":
+                    document.getElementById("科技咨询-E1").style.display = "block";
+                    break;
+                case "科技咨询-E2":
+                    document.getElementById("科技咨询-E2").style.display = "block";
+                    break;
+                case "科技咨询-E3":
+                    document.getElementById("科技咨询-E3").style.display = "block";
+                    break;
+                case "科技咨询-E4":
+                    document.getElementById("科技咨询-E4").style.display = "block";
+                    break;
+                case "科技咨询-E5":
+                    document.getElementById("科技咨询-E5").style.display = "block";
+                    break;
+                case "科技咨询-E6":
+                    document.getElementById("科技咨询-E6").style.display = "block";
+                    break;
+                case "科技咨询-E7":
+                    document.getElementById("科技咨询-E7").style.display = "block";
+                    break;
+                case "科技咨询-E8":
+                    document.getElementById("科技咨询-E8").style.display = "block";
+                    break;
+                case "科技金融-E1":
+                    document.getElementById("科技金融-E1").style.display = "block";
+                    break;
+                case "科技金融-E2":
+                    document.getElementById("科技金融-E2").style.display = "block";
+                    break;
+                case "科技金融-E3":
+                    document.getElementById("科技金融-E3").style.display = "block";
+                    break;
+                case "科技金融-E4":
+                    document.getElementById("科技金融-E4").style.display = "block";
+                    break;
+                case "科技金融-E5":
+                    document.getElementById("科技金融-E5").style.display = "block";
+                    break;
+                case "科技金融-E6":
+                    document.getElementById("科技金融-E6").style.display = "block";
+                    break;
+                case "科技金融-E7":
+                    document.getElementById("科技金融-E7").style.display = "block";
+                    break;
+                case "科技金融-E8":
+                    document.getElementById("科技金融-E8").style.display = "block";
+                    break;
+                case "科学技术普及-E1":
+                    document.getElementById("科学技术普及-E1").style.display = "block";
+                    break;
+                case "科学技术普及-E2":
+                    document.getElementById("科学技术普及-E2").style.display = "block";
+                    break;
+                case "科学技术普及-E3":
+                    document.getElementById("科学技术普及-E3").style.display = "block";
+                    break;
+                case "科学技术普及-E4":
+                    document.getElementById("科学技术普及-E4").style.display = "block";
+                    break;
+                case "科学技术普及-E5":
+                    document.getElementById("科学技术普及-E5").style.display = "block";
+                    break;
+                case "科学技术普及-E6":
+                    document.getElementById("科学技术普及-E6").style.display = "block";
+                    break;
+                case "科学技术普及-E7":
+                    document.getElementById("科学技术普及-E7").style.display = "block";
+                    break;
+                case "科学技术普及-E8":
+                    document.getElementById("科学技术普及-E8").style.display = "block";
+                    break;
+            }
+        })
+    })
+</script>
